@@ -3,16 +3,18 @@
     var arr = new Array();
     var starCount = 800;
     var rains = new Array();
-    var rainCount =20;
+    var rainCount =10;
     //初始化画布及context
     function init(){
         var stars=document.createElement("canvas");
 //获取canvas
+        stars.style.zIndex=-1;
+        stars.style.position="fixed";
         document.getElementById("body-wrap").insertBefore(stars,document.getElementById("body-wrap").firstChild);
-    windowWidth = window.innerWidth; //当前的窗口的高度
-    stars.width=windowWidth;
-    stars.height=window.innerHeight;
-//获取context
+        windowWidth = window.innerWidth; //当前的窗口的高度
+        stars.width=windowWidth;
+        stars.height=window.innerHeight;
+        //获取context
     context = stars.getContext("2d");
 }
     //创建一个星星对象
@@ -89,21 +91,21 @@
     this.speed = 1;//速度
     this.offset_x = -1;//横轴移动偏移量
     this.offset_y = -1;//纵轴移动偏移量
-    this.alpha = 1; //透明度
+    this.alpha = 0; //透明度
     this.color1 = "";//流星的色彩
     this.color2 = ""; //流星的色彩
     /****************初始化函数********************/
     this.init = function () //初始化
 {
     this.getPos();
-    this.alpha = 1;//透明度
+    this.alpha = 0;//透明度
     this.getRandomColor();
 //最小长度，最大长度
     var x = Math.random() * 80 + 150;
     this.length = Math.ceil(x);
 // x = Math.random()*10+30;
     this.angle = 30; //流星倾斜角
-    x = Math.random()+0.5;
+    x = Math.random()/2+0.2;
     this.speed = Math.ceil(x); //流星的速度
     var cos = Math.cos(this.angle*3.14/180);
     var sin = Math.sin(this.angle*3.14/180) ;
@@ -116,9 +118,9 @@
     this.getRandomColor = function (){
     var a = Math.ceil(255-240* Math.random());
 //中段颜色
-    this.color1 = "rgba("+a+","+a+","+a+",1)";
+    this.color1 = "rgba(100,190,255,1)";
 //结束颜色
-    this.color2 = "black";
+    this.color2 = "rgba(255,255,255,0)";
 }
     /***************重新计算流星坐标的函数******************/
     this.countPos = function ()//
@@ -149,7 +151,7 @@
 //分段设置颜色
     line.addColorStop(0, "white");
     line.addColorStop(0.3, this.color1);
-    line.addColorStop(0.6, this.color2);
+    line.addColorStop(0.6, "transparent");
     context.strokeStyle = line;
 //起点
     context.moveTo(this.x, this.y);
@@ -180,7 +182,7 @@
     for (var n = 0; n < rainCount; n++){
     var rain = rains[n];
     rain.move();//移动
-    if(rain.y>window.innerHeight){//超出界限后重来
+    if(rain.y>window.innerHeight/1.9){//超出界限后重来
     context.clearRect(rain.x,rain.y-rain.height,rain.width,rain.height);
     rains[n] = new MeteorRain();
     rains[n].init();
