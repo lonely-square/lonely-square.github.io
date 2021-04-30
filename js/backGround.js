@@ -3,7 +3,7 @@
     var arr = new Array();
     var starCount = 800;
     var rains = new Array();
-    var rainCount =10;
+    var rainCount =5;
     //初始化画布及context
     function init(){
         var stars=document.createElement("canvas");
@@ -171,7 +171,7 @@
 //重新计算位置，往左下移动
     this.countPos();
 //透明度增加
-    this.alpha -= 0.002;
+    this.alpha -= 0.1;
 //重绘
     this.draw();
 }
