@@ -34,5 +34,5 @@ setInterval(function()
             clearInterval(timer);
             rain.parentNode.removeChild(rain);
         }
-    },4)                        //每隔4毫秒雨滴下落一次
-},8)                            //每隔8毫秒生成一次雨滴
+    },50)                        //每隔4毫秒雨滴下落一次
+},100)                            //每隔8毫秒生成一次雨滴
