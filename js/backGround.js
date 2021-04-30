@@ -1,7 +1,7 @@
 
     var context;
     var arr = new Array();
-    var starCount = 800;
+    var starCount = 300;
     var rains = new Array();
     var rainCount =5;
     //初始化画布及context
@@ -151,7 +151,7 @@
 //分段设置颜色
     line.addColorStop(0, "white");
     line.addColorStop(0.3, this.color1);
-    line.addColorStop(0.6, "transparent");
+    line.addColorStop(1, "transparent");
     context.strokeStyle = line;
 //起点
     context.moveTo(this.x, this.y);
